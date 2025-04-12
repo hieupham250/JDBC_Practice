@@ -2,9 +2,13 @@ package business.model;
 
 import datatype.Gender;
 import datatype.Status;
+import validate.ValidateEmployee;
+import validate.Validator;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Employee {
     private String employee_id;
@@ -121,5 +125,37 @@ public class Employee {
 
     public void setDepartment_id(int department_id) {
         this.department_id = department_id;
+    }
+
+    public void inputData(Scanner sc) {
+        this.employee_id = ValidateEmployee.validateEmployeeId("Nhập mã nhân viên: ", sc);
+        this.full_name = ValidateEmployee.validateEmployeeName("Nhập họ tên đầy đủ: ", sc);
+        this.email = Validator.validateInputEmail("Nhập email: ", sc);
+        this.phone_number = Validator.validateInputPhoneNumber("Nhập số điện thoại: ", sc);
+        this.gender = ValidateEmployee.validateGender("Nhập giới tính (MALE/FEMALE/OTHER): ", sc);
+        this.salary_level = ValidateEmployee.validateSalaryLevel("Nhập cấp bậc lương (số nguyên > 0): ", sc);
+        this.salary = ValidateEmployee.validateSalary("Nhập lương: ", sc);
+        this.birth_date = ValidateEmployee.validateBirthDate("Nhập ngày sinh (dd/MM/yyyy): ", sc);
+        this.address = ValidateEmployee.validateAddress("Nhập địa chỉ: ", sc);
+        this.status = ValidateEmployee.validateStatus("Nhập trạng thái (ACTIVE/INACTIVE/ONLEAVE/POLICYLEAVE): ", sc);
+        this.department_id = ValidateEmployee.validateDepartment("Nhập mã phòng ban (số nguyên > 0): ", sc);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Mã NV: %s | Họ tên: %s | Email: %s | SĐT: %s | Giới tính: %s | Cấp bậc lương: %d | Lương: %.2f | Ngày sinh: %s | Địa chỉ: %s | Trạng thái: %s | Mã phòng ban: %d",
+                employee_id,
+                full_name,
+                email,
+                phone_number,
+                gender,
+                salary_level,
+                salary,
+                birth_date,
+                address,
+                status,
+                department_id
+        );
     }
 }

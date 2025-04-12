@@ -1,5 +1,6 @@
 import business.model.Account;
 import pressentation.DepartmentUI;
+import pressentation.EmployeeUI;
 import pressentation.LoginUI;
 import validate.Validator;
 
@@ -28,7 +29,7 @@ public class Main {
                     DepartmentUI.menuDepartment(sc);
                     break;
                 case 2:
-
+                    EmployeeUI.menuEmployee(sc);
                     break;
                 case 3:
 

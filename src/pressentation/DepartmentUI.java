@@ -63,19 +63,18 @@ public class DepartmentUI {
                     System.out.println(department);
                 }
             }
-            System.out.println("\n[1] Trang sau | [2] Trang trước | [3] Thoát");
-            System.out.print("Chọn hành động: ");
-            String choice = sc.nextLine().trim().toLowerCase();
-
-            if (choice.equals("1")) {
+            System.out.println("[1] Trang sau | [2] Trang trước | [3] Thoát");
+            int choice = Validator.validateInputInteger("Chọn hành động: ", sc);
+            sc.nextLine();
+            if (choice == 1) {
                 page++;
-            } else if (choice.equals("2")) {
+            } else if (choice == 2) {
                 if (page > 1) {
                     page--;
                 } else {
                     System.out.println("\u001B[31mĐang ở trang đầu tiên.\u001B[0m");
                 }
-            } else if (choice.equals("3")) {
+            } else if (choice == 3) {
                 break;
             } else {
                 System.out.println("\u001B[31mLựa chọn không hợp lệ!\u001B[0m");
